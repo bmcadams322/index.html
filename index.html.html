@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Texas State University – Homepage (Redesign)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --txst-maroon: #501214;
+      --txst-dark-gold: #ac9155;
+      --txst-bright-gold: #d7bd8a;
+      --txst-cream: #f7f3ea;
+      --txst-dark: #191919;
+      --txst-text: #222222;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--txst-text);
+      background-color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ====== HEADER / NAV ====== */
+    header {
+      background: var(--txst-maroon);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-bar {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .txst-logo-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      border: 2px solid var(--txst-bright-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .nav-title-group span:first-child {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--txst-bright-gold);
+    }
+
+    .nav-title-group span:last-child {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s ease-in-out;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: var(--txst-dark-gold);
+      color: #111;
+      border-color: var(--txst-dark-gold);
+    }
+
+    .btn-gold:hover {
+      background: #c5a96a;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border-color: var(--txst-bright-gold);
+    }
+
+    .btn-outline:hover {
+      background: rgba(215, 189, 138, 0.15);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      background: radial-gradient(circle at top left, #7b3b35 0, #2a090a 60%)
+        no-repeat center/cover;
+      color: white;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.85rem;
+      color: var(--txst-bright-gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      max-width: 32rem;
+      margin-bottom: 1.25rem;
+      color: #f4e7d6;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      font-size: 0.85rem;
+      color: #e9d8c2;
+    }
+
+    .hero-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+
+    .hero-photo {
+      border-radius: 0.85rem;
+      overflow: hidden;
+      border: 2px solid rgba(215, 189, 138, 0.4);
+      aspect-ratio: 4/3;
+      position: relative;
+      background: #3b1515;
+    }
+
+    .hero-photo img.hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo span {
+      position: absolute;
+      left: 0.75rem;
+      bottom: 0.75rem;
+      background: rgba(0, 0, 0, 0.55);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ====== MAIN LAYOUT ====== */
+    main {
+      background: #ffffff;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--txst-maroon);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: #555;
+      max-width: 26rem;
+    }
+
+    /* ====== QUICK PATHS ====== */
+    .paths {
+      background: var(--txst-cream);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    .paths-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .path-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid #e4ded1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .path-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+    }
+
+    .path-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #8a6c3a;
+    }
+
+    .path-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .path-desc {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .path-link {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--txst-maroon);
+    }
+
+    /* ====== STUDENT STORIES ====== */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .story-card {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid #ebdfcf;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .story-img-wrapper {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+
+    .story-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-body {
+      padding: 0.85rem 0.95rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .story-major {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #8c6d3b;
+    }
+
+    .story-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .story-quote {
+      font-size: 0.88rem;
+      color: #555;
+    }
+
+    .story-link {
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--txst-maroon);
+    }
+
+    /* ====== NEWS & EVENTS ====== */
+    .news-events {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.75rem;
+    }
+
+    .news-list,
+    .events-list {
+      background: #faf7f0;
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      border: 1px solid #e7ddce;
+    }
+
+    .pill-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #8c6d3b;
+      margin-bottom: 0.4rem;
+    }
+
+    .news-item,
+    .event-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #e5dccf;
+    }
+
+    .news-item:last-child,
+    .event-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-title,
+    .event-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+      color: var(--txst-maroon);
+    }
+
+    .news-meta,
+    .event-meta {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* ====== THIS IS TXST STRIP ====== */
+    .this-is-txst {
+      background: var(--txst-maroon);
+      color: white;
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .this-body h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .this-body p {
+      font-size: 0.95rem;
+      color: #f2e5d4;
+      max-width: 32rem;
+    }
+
+    .this-cta {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .this-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: #f4e7d6;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(0, 0, 0, 0.26);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      background: #111111;
+      color: #dddddd;
+      margin-top: 2.5rem;
+      padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1.5fr;
+      gap: 2rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-heading {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--txst-bright-gold);
+    }
+
+    .footer-links a {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #d2d2d2;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom {
+      max-width: 1120px;
+      margin: 1.25rem auto 0;
+      padding-top: 0.75rem;
+      border-top: 1px solid #333;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #999999;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-photo-grid {
+        order: -1;
+      }
+      .news-events {
+        grid-template-columns: 1fr;
+      }
+      .stories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .paths-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .this-is-txst {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-cta {
+        display: none;
+      }
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stories-grid {
+        grid-template-columns: 1fr;
+      }
+      .paths-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-inner {
+        padding-top: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== HEADER / NAV ========== -->
+  <header>
+    <div class="nav-bar">
+      <div class="nav-left">
+        <div class="txst-logo-box">TXST</div>
+        <div class="nav-title-group">
+          <span>Texas State University</span>
+          <span>San Marcos &amp; Round Rock</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Programs</a>
+        <a href="#">Admissions</a>
+        <a href="#">Visit</a>
+        <a href="#">Student Life</a>
+        <a href="#">Research</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="btn btn-outline">Info for Current Students</button>
+        <button class="btn btn-gold">Apply</button>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">Applications Open for 2026</div>
+        <h1 class="hero-title">This is Texas State.</h1>
+        <p class="hero-subtitle">
+          A welcoming community, nationally recognized programs, and a campus in
+          the heart of the Texas Hill Country. See why more than 40,000 students
+          call TXST home.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn btn-gold">Apply Now</button>
+          <button class="btn btn-outline">Schedule a Visit</button>
+          <button class="btn btn-outline">Request Info</button>
+        </div>
+        <p class="hero-meta">
+          Top-tier research • Beautiful riverfront campus • Hands-on learning in
+          every major
+        </p>
+      </div>
+
+      <div class="hero-photo-grid">
+        <!-- HERO IMAGE 1: CAMPUS LIFE -->
+        <!-- 1) Find a campus life picture on Google Images (TXST students on campus)
+             2) Right-click → “Copy image address”
+             3) Paste into src="" below -->
+        <div class="hero-photo">
+          <img
+            class="hero-img"
+            src="https://www.txst.edu/cache315a90ba145f779b9c1a836ff36ba124/imagehandler/scaler/gato-docs.its.txstate.edu/jcr:2f30db73-407f-4693-af35-85f5aa2889c4/quad-portrait.jpg?mode=fit&width=1001"
+            alt="Texas State students walking on campus"
+          />
+          <span>Campus Life</span>
+        </div>
+
+        <!-- HERO IMAGE 2: IN THE CLASSROOM -->
+        <div class="hero-photo">
+          <img
+            class="hero-img"
+            src="https://docs.gato.txst.edu/75735/w/2995/2_9nRoaLPzDY/KTalley2.jpg"
+            alt="Students in a Texas State classroom"
+          />
+          <span>In the Classroom</span>
+        </div>
+
+        <!-- HERO IMAGE 3: SAN MARCOS RIVER -->
+        <div class="hero-photo">
+          <img
+            class="hero-img"
+            src="http://www.txstate.edu/cache5a0b56fc6985c0af7e579739037eb73f/imagehandler/scaler/gato-docs.its.txstate.edu/jcr:54e9d2b1-983b-4a89-b786-161ecd845771/sewell_1280x1024.jpg?mode=fit&width=1280"
+            alt="San Marcos River by Texas State campus"
+          />
+          <span>San Marcos River</span>
+        </div>
+
+        <!-- HERO IMAGE 4: BOBCAT SPIRIT -->
+        <div class="hero-photo">
+          <img
+            class="hero-img"
+            src="https://universitystar.com/wp-content/uploads/2022/10/cba6bfd1d3c7a0eb3c367003aba474ff.jpg"
+            alt="Texas State Bobcat spirit crowd"
+          />
+          <span>Bobcat Spirit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ========== QUICK PATHS / LESS CLUTTERED TASKS ========== -->
+    <section class="section">
+      <div class="paths">
+        <div class="section-header">
+          <h2 class="section-title">Choose Your Path</h2>
+          <p class="section-subtitle">
+            We’ve grouped the most common tasks so you don’t have to hunt
+            through dozens of links.
+          </p>
+        </div>
+
+        <div class="paths-grid">
+          <article class="path-card">
+            <div class="path-label">Future Students</div>
+            <div class="path-title">Start Your Bobcat Journey</div>
+            <p class="path-desc">
+              Explore majors, check admission requirements, and plan your visit.
+            </p>
+            <a href="#" class="path-link">Explore Undergraduate Admissions →</a>
+          </article>
+
+          <article class="path-card">
+            <div class="path-label">Current Students</div>
+            <div class="path-title">Stay on Track</div>
+            <p class="path-desc">
+              Access registration, financial aid, advising, and campus services
+              in one place.
+            </p>
+            <a href="#" class="path-link">Go to Student Resources →</a>
+          </article>
+
+          <article class="path-card">
+            <div class="path-label">Families &amp; Visitors</div>
+            <div class="path-title">Plan Your Visit</div>
+            <p class="path-desc">
+              Find campus maps, parking, hotel information, and Bobcat Day
+              events.
+            </p>
+            <a href="#" class="path-link">Family &amp; Visitor Info →</a>
+          </article>
+
+          <article class="path-card">
+            <div class="path-label">Graduate &amp; Online</div>
+            <div class="path-title">Advance Your Career</div>
+            <p class="path-desc">
+              Browse graduate, professional, and online programs designed for
+              busy adults.
+            </p>
+            <a href="#" class="path-link">View Graduate &amp; Online Programs →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STUDENT STORIES ========== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Student Stories</h2>
+        <p class="section-subtitle">
+          Real Bobcats, real experiences. These are the kinds of journeys that
+          start on the TXST homepage.
+        </p>
+      </div>
+
+      <div class="stories-grid">
+        <!-- STORY 1 IMAGE -->
+        <!-- Use a Google image of a TXST student in a science lab/classroom -->
+        <article class="story-card">
+          <div class="story-img-wrapper">
+            <img
+              src="https://uncw.edu/academics/majors-programs/cse/integrative-comparative-marine-biology-phd/media/images/students-in-lab-coats-20221028-ILM03001-photo-slider.jpg"
+              alt="Texas State student doing biology research"
+            />
+          </div>
+          <div class="story-body">
+            <div class="story-major">Biology • San Antonio, TX</div>
+            <div class="story-title">“I found my research home at TXST.”</div>
+            <p class="story-quote">
+              “My first semester I was nervous about a big campus, but my
+              professors helped me get into a lab my freshman year. Now I’m
+              doing hands-on research in regenerative biology.”
+            </p>
+            <a href="#" class="story-link">Read Maria’s Story →</a>
+          </div>
+        </article>
+
+        <!-- STORY 2 IMAGE -->
+        <!-- Use a Google image of a student in business/marketing setting -->
+        <article class="story-card">
+          <div class="story-img-wrapper">
+            <img
+              src="https://docs.gato.txst.edu/106286/w/2000/Rs0L2WSTTRhw/Fin_Eco%20cover%20photo.jpg"
+              alt="Texas State business student in internship or office"
+            />
+          </div>
+          <div class="story-body">
+            <div class="story-major">Business • Houston, TX</div>
+            <div class="story-title">
+              “Internships turned into a job offer.”
+            </div>
+            <p class="story-quote">
+              “Career Services helped me polish my resume, practice interviews,
+              and land an internship in Austin. By senior year, I had a full-time
+              offer waiting.”
+            </p>
+            <a href="#" class="story-link">Read Jordan’s Story →</a>
+          </div>
+        </article>
+
+        <!-- STORY 3 IMAGE -->
+        <!-- Use a Google image of students at a campus event / org -->
+        <article class="story-card">
+          <div class="story-img-wrapper">
+            <img
+              src="https://docs.gato.txst.edu/645421/w/1504/tnuKDzvcrnk8/Movie%20Night.jpg"
+              alt="Texas State students at a campus event"
+            />
+          </div>
+          <div class="story-body">
+            <div class="story-major">Education • Dallas, TX</div>
+            <div class="story-title">“Community made a big campus small.”</div>
+            <p class="story-quote">
+              “I joined a student organization my first week, and suddenly I had
+              a group that felt like family. TXST gives you so many ways to
+              plug in.”
+            </p>
+            <a href="#" class="story-link">Read Alexis’s Story →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== NEWS & EVENTS (DECLUTTERED) ========== -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">News &amp; Events</h2>
+        <p class="section-subtitle">
+          A quick snapshot of what’s happening at Texas State. Deeper details
+          live on the full News and Events sites.
+        </p>
+      </div>
+
+      <div class="news-events">
+        <div class="news-list">
+          <div class="pill-label">Latest News</div>
+
+          <div class="news-item">
+            <div class="news-title">
+              TXST named among “Best Colleges in America”
+            </div>
+            <div class="news-meta">University Recognition • Learn More →</div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-title">
+              TXST researchers lead new water sustainability project
+            </div>
+            <div class="news-meta">
+              Research &amp; Innovation • Read Story →
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-title">
+              Bobcat alumni give back to support student scholarships
+            </div>
+            <div class="news-meta">Alumni &amp; Giving • Read More →</div>
+          </div>
+        </div>
+
+        <aside class="events-list">
+          <div class="pill-label">Upcoming Events</div>
+
+          <div class="event-item">
+            <div class="event-title">Bobcat Day</div>
+            <div class="event-meta">Nov 22 • Campus-wide open house</div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-title">Campus Tour &amp; Information Session</div>
+            <div class="event-meta">
+              Multiple dates weekly • Admissions &amp; Campus Life
+            </div>
+          </div>
+
+          <div class="event-item">
+            <div class="event-title">Finals Week Study Events</div>
+            <div class="event-meta">
+              Library &amp; Student Success • Tutoring &amp; quiet spaces
+            </div>
+          </div>
+
+          <a href="#" class="story-link" style="display:inline-block;margin-top:0.5rem;">
+            View Full Events Calendar →
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== THIS IS TXST STRIP ========== -->
+    <section class="section">
+      <div class="this-is-txst">
+        <div class="this-body">
+          <h2>This is TXST.</h2>
+          <p>
+            We’re the most beautiful university in Texas and one of its most
+            welcoming communities. From the river to the research labs, TXST is
+            built for students who want hands-on learning and a place to belong.
+          </p>
+          <div class="this-cta">
+            <button class="btn btn-gold">Explore Majors &amp; Programs</button>
+            <button class="btn btn-outline">Take a Virtual Tour</button>
+          </div>
+        </div>
+        <div class="this-badges">
+          <div class="badge">40,000+ students</div>
+          <div class="badge">San Marcos &amp; Round Rock campuses</div>
+          <div class="badge">Rising research university (on track to R1)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-heading">Texas State University</div>
+        <p>
+          San Marcos Campus<br />
+          601 University Drive<br />
+          San Marcos, Texas 78666-4684<br />
+          Phone: 512.245.2111
+        </p>
+        <p style="margin-top:0.75rem;">
+          Round Rock Campus<br />
+          1555 University Blvd.<br />
+          Round Rock, Texas 78665-8017
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-heading">Key Links</div>
+        <div class="footer-links">
+          <a href="#">Apply</a>
+          <a href="#">Majors &amp; Programs</a>
+          <a href="#">Financial Aid &amp; Scholarships</a>
+          <a href="#">Visit Campus</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Resources</div>
+        <div class="footer-links">
+          <a href="#">Library</a>
+          <a href="#">Careers</a>
+          <a href="#">Emergency Info</a>
+          <a href="#">Mental Health Resources</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© Texas State University</span>
+      <span>Equal Opportunity • Legal • Accessibility</span>
+    </div>
+  </footer>
+</body>
+</html>
